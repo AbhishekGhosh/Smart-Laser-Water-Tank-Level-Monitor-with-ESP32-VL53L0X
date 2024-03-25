@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Water Tank Level Monitoring</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // Function to fetch water level data
+      function fetchWaterLevel() {
+        $.ajax({
+          url: 'get_data.php',
+          type: 'GET',
+          success: function(data) {
+            // Update water level on the webpage
+            $('#waterLevel').text(data + ' mm');
+          }
+        });
+      }
+      
+      // Fetch water level data every 5 seconds
+      setInterval(fetchWaterLevel, 5000);
+    });
+  </script>
+</head>
+<body>
+  <h1>Water Tank Level</h1>
+  <p>Current Water Level: <span id="waterLevel"></span></p>
+</body>
+</html>
